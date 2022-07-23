@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ExampleComponent :variable="variable" />
+    <ExampleComponent :var_comp="variable" />
     <h1>Это страница-родитель</h1>
   </div>
 </template>
