@@ -19,6 +19,13 @@ export default {
     Footer,
     Slider,
     Navbar,
+  },
+  head() {
+    return {
+      link: [
+        { rel: "canonical", href: `http://127.0.0.1:3000${this.$route.path}` }
+      ]
+    }
   }
 }
 </script>

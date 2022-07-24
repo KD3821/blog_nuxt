@@ -2,28 +2,63 @@
   <div>
     <div class="card my-4">
       <h5 class="card-header">Прокомментируй:</h5>
-      <div class="card-body">
-        <form>
+      <div class="card-body" v-if="loggedIn">
+        <form @submit.prevent="addComment">
           <div class="form-group">
-            <textarea class="form-control" rows="3"></textarea>
+            <textarea class="form-control" rows="3" v-model="new_comment"></textarea>
           </div>
-          <button type="submit" class="btn btn-primary">Отправить</button>
+          <button type="submit" class="btn btn-primary" :disabled="!isComplete">Отправить</button>
         </form>
       </div>
-    </div>
-    <div class="media mb-4">
-      <img class="d-flex mr-3 rounded-circle" src="static/images/tivanova.jpg" alt="">
-      <div class="media-body">
-        <h5 class="mt-0">Дуся Иванова</h5>
-        Мое очень важное мнение по данной статье. Мое очень важное мнение по данной статье. Мое очень важное мнение по данной статье. Мое очень важное мнение по данной статье. Мое очень важное мнение по данной статье.
+      <div v-else>
+        <h6 class="card-header"><nuxt-link to="/signin">Авторизуйтесь</nuxt-link> или <nuxt-link to="/signup">зарегистрируйтесь</nuxt-link> чтобы оставить комменарий.</h6>
       </div>
+    </div>
+    <div class="media mb-4" v-for="comment in comments" :key="comment.id">
+      <img class="d-flex mr-3 rounded-circle" src="/images/tivanova.jpg" alt="">
+      <div class="media-body">
+        <h5 class="mt-0">{{ comment.username }}</h5>
+        {{ comment.text }}
+        </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Comments"
+  props: ['comments', 'post'],
+  data() {
+    return {
+      new_comment: '',
+    }
+  },
+  methods: {
+    async addComment() {
+      try {
+        let response = await this.$axios.post('http://127.0.0.1:8000/api/comments/', {
+          post: this.$props.post.slug,
+          username: this.user.username,
+          text: this.new_comment
+        });
+        this.new_comment = '';
+        this.comments.splice(0, 0, response.data);
+        console.log(response);
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  },
+  computed: {
+    loggedIn() {
+      return this.$auth.loggedIn
+    },
+    user() {
+      return this.$auth.user
+    },
+    isComplete() {
+      return this.new_comment;
+    }
+  }
 }
 </script>
 
