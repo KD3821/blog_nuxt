@@ -1,5 +1,17 @@
 # nuxtjs_blog
 
+<h1 align="center">Blog app based on Python (Django REST framework) and JavaScript (Vue.js)/h1>
+<p align="center">
+
+<img src="https://img.shields.io/badge/madeBy-KD3821-gold" >
+
+Проект в рамках прохождения онлайн-курса:<br>
+<a href="https://stepik.org/course/82067/promo">"SPA сайт на Django Rest Framework и NuxtJS"</a><br>
+<ul>
+<li>шаблон при помощи Bootstrap</li>
+<li>API на Django Rest Framework</li>
+<li>Фронтенд на NuxtJS(Vue.js)</li>
+</ul>
 ## Build Setup
 
 ```bash
