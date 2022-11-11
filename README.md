@@ -1,6 +1,6 @@
 # nuxtjs_blog
 
-<h1 align="center">Blog app based on Python (Django REST framework) and JavaScript (Vue.js)/h1>
+<h1 align="center">Blog app based on Python (Django REST framework) and JavaScript (Vue.js)</h1>
 <p align="center">
 
 <img src="https://img.shields.io/badge/madeBy-KD3821-gold" >
